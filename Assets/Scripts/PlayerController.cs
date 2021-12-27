@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// 参考動画。こちらは NavMesh を使っているが、ジャンプさせたいので使わない
+// https://www.youtube.com/watch?v=VqS1dTiVLFA&t=2s
+
 public class PlayerController : MonoBehaviour
 {
     private Animator anim;
