@@ -410,7 +410,7 @@ GameObject:
   - component: {fileID: 142167634}
   - component: {fileID: 142167633}
   m_Layer: 0
-  m_Name: Camera
+  m_Name: MainCamera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4903,6 +4903,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f10f47a1510c9b428b60f5326990d37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveSpeed: 3
 --- !u!54 &1239237045
 Rigidbody:
   m_ObjectHideFlags: 0
