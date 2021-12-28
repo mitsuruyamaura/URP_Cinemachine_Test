@@ -15,6 +15,6 @@ public class ChangeCameraBox : MonoBehaviour
 
     private void OnTriggerEnter(Collider other) {
 
-        areaCameraManager.ChengeVirtualCamera(virtualCamera);
+        areaCameraManager.ChangeCurrentCamera(virtualCamera);
     }
 }
