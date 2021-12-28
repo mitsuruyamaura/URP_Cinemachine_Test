@@ -7100,7 +7100,7 @@ GameObject:
   - component: {fileID: 1625765141}
   - component: {fileID: 1625765140}
   m_Layer: 0
-  m_Name: ChangePoint
+  m_Name: ViewPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
