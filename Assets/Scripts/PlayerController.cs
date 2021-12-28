@@ -5,6 +5,11 @@ using UnityEngine;
 // 参考動画。こちらは NavMesh を使っているが、ジャンプさせたいので使わない
 // https://www.youtube.com/watch?v=VqS1dTiVLFA&t=2s
 
+
+// シネマシンの角度によってキー入力による移動方向がズレるため、上記の方法からこちらに切り替える
+// https://tech.pjin.jp/blog/2016/11/04/unity_skill_5/
+
+
 public class PlayerController : MonoBehaviour
 {
     private Animator anim;
@@ -68,10 +73,10 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate() {
 
-        // カメラの方向から、X-Z平面の単位ベクトルを取得
+        // 現在利用しているカメラの方向から、X-Z 平面の単位ベクトルを取得
         Vector3 cameraForward = Vector3.Scale(areaCameraManager.CurrentCamera.transform.forward, new Vector3(1, 0, 1)).normalized;
 
-        // 方向キーの入力値とカメラの向きから、移動方向を決定
+        // 方向キーの入力値と、現在利用しているカメラの向きから、移動方向を決定
         Vector3 moveForward = cameraForward * vertical + areaCameraManager.CurrentCamera.transform.right * horizontal;
 
         // 移動方向にスピードを掛ける。ジャンプや落下がある場合は、別途Y軸方向の速度ベクトルを足す。
