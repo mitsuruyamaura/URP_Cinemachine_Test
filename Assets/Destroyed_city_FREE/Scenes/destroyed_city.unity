@@ -2542,7 +2542,7 @@ GameObject:
   - component: {fileID: 688199771}
   - component: {fileID: 688199770}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: AreaCameraManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7100,7 +7100,7 @@ GameObject:
   - component: {fileID: 1625765141}
   - component: {fileID: 1625765140}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: ChangePoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
