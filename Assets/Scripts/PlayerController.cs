@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UniRx;
+using UniRx.Triggers;
 
 // 参考動画。こちらは NavMesh を使っているが、ジャンプさせたいので使わない
 // https://www.youtube.com/watch?v=VqS1dTiVLFA&t=2s
@@ -34,14 +36,46 @@ public class PlayerController : MonoBehaviour
 
         // 初期化
         targetRotation = transform.rotation;
-        //Cursor.lockState = CursorLockMode.Locked;
+
+        // キー入力
+        this.UpdateAsObservable()
+            .Subscribe(_ => 
+            {
+                horizontal = Input.GetAxis("Horizontal");
+                vertical = Input.GetAxis("Vertical");
+            });
+
+        // 移動
+        this.FixedUpdateAsObservable()
+            .Subscribe(_ => { MoveDirectionFromCamera(); });
+
     }
 
-    void Update()
-    {
+    /// <summary>
+    /// 現在のカメラの方向を基準にして移動
+    /// </summary>
+    private void MoveDirectionFromCamera() {
+
+        // 現在利用しているカメラの方向から、X-Z 平面の単位ベクトルを取得
+        Vector3 cameraForward = Vector3.Scale(areaCameraManager.CurrentCamera.transform.forward, new Vector3(1, 0, 1)).normalized;
+
+        // 方向キーの入力値と、現在利用しているカメラの向きから、移動方向を決定
+        Vector3 moveForward = cameraForward * vertical + areaCameraManager.CurrentCamera.transform.right * horizontal;
+
+        // 移動方向にスピードを掛ける。ジャンプや落下がある場合は、別途Y軸方向の速度ベクトルを足す。
+        rb.velocity = moveForward * moveSpeed + new Vector3(0, rb.velocity.y, 0);
+
+        // キャラクターの向きを進行方向に
+        if (moveForward != Vector3.zero) {
+            transform.rotation = Quaternion.LookRotation(moveForward);
+        }
+    }
+
+    //void Update()
+    //{
         // カメラの向きで補正した入力ベクトルの取得
-        horizontal = Input.GetAxis("Horizontal");
-        vertical = Input.GetAxis("Vertical");
+        //horizontal = Input.GetAxis("Horizontal");
+        //vertical = Input.GetAxis("Vertical");
 
 
         //Quaternion horizontalRotation = Quaternion.AngleAxis(Camera.main.transform.eulerAngles.y, Vector3.up);  // Camera.main では VirtualCamera が参照できないため
@@ -68,26 +102,11 @@ public class PlayerController : MonoBehaviour
 
         //// この計算を FixedUpdate で行うと計算が狂う
         //moveDirection = new Vector3(horizontal, 0, vertical).normalized * moveSpeed * speed;
-    }
+    //}
 
 
-    private void FixedUpdate() {
-
-        // 現在利用しているカメラの方向から、X-Z 平面の単位ベクトルを取得
-        Vector3 cameraForward = Vector3.Scale(areaCameraManager.CurrentCamera.transform.forward, new Vector3(1, 0, 1)).normalized;
-
-        // 方向キーの入力値と、現在利用しているカメラの向きから、移動方向を決定
-        Vector3 moveForward = cameraForward * vertical + areaCameraManager.CurrentCamera.transform.right * horizontal;
-
-        // 移動方向にスピードを掛ける。ジャンプや落下がある場合は、別途Y軸方向の速度ベクトルを足す。
-        rb.velocity = moveForward * moveSpeed + new Vector3(0, rb.velocity.y, 0);
-
-        // キャラクターの向きを進行方向に
-        if (moveForward != Vector3.zero) {
-            transform.rotation = Quaternion.LookRotation(moveForward);            
-        }
-
+    //private void FixedUpdate() {
 
         //rb.velocity = new Vector3(moveDirection.x, rb.velocity.y, moveDirection.z);
-    }
+    //}
 }
