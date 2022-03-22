@@ -9,9 +9,13 @@ public class Move : MonoBehaviour {
 
     private DirectionController2d controller;
     private Rigidbody rb;
+    private Animator anim;
 
     private string horizontal = "Horizontal";
-    float inputValue;
+    private float inputValue;
+    private Vector2 lookDirection = new Vector2(1, 0);
+    private bool isDash;
+
 
     void Start() {
         if(!TryGetComponent(out rb)) {
@@ -20,6 +24,10 @@ public class Move : MonoBehaviour {
 
         if (!TryGetComponent(out controller)) {
             Debug.Log("DirectionController2d 取得出来ませんでした");
+        }
+
+        if (!TryGetComponent(out anim)) {
+            Debug.Log("Animator 取得出来ませんでした");
         }
     }
 
@@ -41,6 +49,8 @@ public class Move : MonoBehaviour {
             controller.direction = Direction.back;
         }
 
+        SyncMoveAnimation();
+
         //if (Input.GetKey(KeyCode.LeftArrow)) {
         //    // 向きを設定する
         //    controller.direction = Direction.back;
@@ -50,6 +60,26 @@ public class Move : MonoBehaviour {
         //    controller.direction = Direction.front;
         //    //transform.position += controller.forward * speed * Time.deltaTime;
         //} 
+    }
+
+    /// <summary>
+    /// 移動する方向と移動アニメの同期
+    /// </summary>
+    private void SyncMoveAnimation() {
+        if (!Mathf.Approximately(inputValue, 0.0f)) {
+            lookDirection.Set(inputValue, 0);
+            lookDirection.Normalize();
+
+            anim.SetFloat("Look X", lookDirection.x);
+            anim.SetFloat("Look Y", lookDirection.y);
+
+            float moveSpeed = isDash ? lookDirection.sqrMagnitude * 2.0f : lookDirection.sqrMagnitude;
+
+            // ダッシュ有無に応じてアニメの再生速度を調整
+            anim.SetFloat("Speed", moveSpeed);
+        } else {
+            anim.SetFloat("Speed", 0);
+        }
     }
 
     private void FixedUpdate() {
