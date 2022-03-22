@@ -13,6 +13,9 @@ public class Move : MonoBehaviour {
     [SerializeField]
     private LayerMask groundLayer;
 
+    [SerializeField]
+    private CameraEffect cameraEffect;
+
     //[SerializeField]
     //private bool isGrounded;
 
@@ -26,6 +29,8 @@ public class Move : MonoBehaviour {
 
     [SerializeField]
     private bool isDash;
+
+    private bool isVignette;
 
 
     void Start() {
@@ -70,6 +75,18 @@ public class Move : MonoBehaviour {
 
         isDash = Input.GetKey(KeyCode.LeftShift) ? true : false;
 
+        if (isDash) {
+            if (!isVignette) {
+                isVignette = true;
+                cameraEffect.ChangeVignetteIntensity(0.45f, 0.25f);
+            }
+        } else {
+            if (isVignette) {
+                isVignette = false;
+                cameraEffect.ChangeVignetteIntensity(0, 0.25f);
+            }
+        }
+
         //if (Input.GetKey(KeyCode.LeftArrow)) {
         //    // å¸Ç´Çê›íËÇ∑ÇÈ
         //    controller.direction = Direction.back;
@@ -89,8 +106,8 @@ public class Move : MonoBehaviour {
             lookDirection.Set(inputValue, 0);
             lookDirection.Normalize();
 
-            anim.SetFloat("Look X", lookDirection.x);
-            anim.SetFloat("Look Y", lookDirection.y);
+            anim.SetFloat("LookX", lookDirection.x);
+            anim.SetFloat("LookZ", lookDirection.y);
 
             float animSpeed = isDash ? lookDirection.sqrMagnitude * 2.0f : lookDirection.sqrMagnitude;
 
