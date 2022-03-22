@@ -26,8 +26,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private AreaCameraManager areaCameraManager;
 
-    float horizontal;
-    float vertical;
+    private float horizontal;
+    private float vertical;
+    private Vector2 lookDirection = new Vector2(1, 0);
+
 
     void Start()
     {
@@ -43,6 +45,10 @@ public class PlayerController : MonoBehaviour
             {
                 horizontal = Input.GetAxis("Horizontal");
                 vertical = Input.GetAxis("Vertical");
+
+                if (anim) {
+                    SyncMoveAnimation();
+                }
             });
 
         // 移動
@@ -68,6 +74,23 @@ public class PlayerController : MonoBehaviour
         // キャラクターの向きを進行方向に
         if (moveForward != Vector3.zero) {
             transform.rotation = Quaternion.LookRotation(moveForward);
+        }
+    }
+
+    /// <summary>
+    /// 移動アニメの同期
+    /// </summary>
+    private void SyncMoveAnimation() {
+        if (!Mathf.Approximately(horizontal, 0.0f) || !Mathf.Approximately(vertical, 0.0f)) {
+            lookDirection.Set(horizontal, vertical);
+            lookDirection.Normalize();
+
+            anim.SetFloat("LookX", lookDirection.x);
+            anim.SetFloat("LookZ", lookDirection.y);
+
+            anim.SetFloat("Speed", lookDirection.sqrMagnitude);
+        } else {
+            anim.SetFloat("Speed", 0);
         }
     }
 

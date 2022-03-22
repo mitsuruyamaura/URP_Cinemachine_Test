@@ -569,7 +569,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 142167632}
-  m_LocalRotation: {x: 0, y: 0.9961947, z: -0.08715578, w: 0}
+  m_LocalRotation: {x: 0.00046350237, y: 0.98675793, z: -0.16217482, w: 0.0028201959}
   m_LocalPosition: {x: 230.24998, y: 4.52, z: 238.79001}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -621,7 +621,7 @@ GameObject:
   - component: {fileID: 143002609}
   - component: {fileID: 143002608}
   m_Layer: 0
-  m_Name: CM vcam1 (3)_WaypointMove
+  m_Name: CM vcam1_WaypointMove
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -645,7 +645,7 @@ MonoBehaviour:
   m_StreamingVersion: 20170927
   m_Priority: 20
   m_StandbyUpdate: 2
-  m_LookAt: {fileID: 0}
+  m_LookAt: {fileID: 4247883958757239221}
   m_Follow: {fileID: 4247883958757239221}
   m_Lens:
     FieldOfView: 50
@@ -656,7 +656,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 2, y: 1}
+    m_SensorSize: {x: 2.0007517, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -672,7 +672,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 143002607}
-  m_LocalRotation: {x: -0, y: 0.9961947, z: -0.08715578, w: 0}
+  m_LocalRotation: {x: 0.00046350237, y: 0.98675793, z: -0.16217482, w: 0.0028201959}
   m_LocalPosition: {x: 230.24998, y: 4.52, z: 238.79001}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1550,6 +1550,36 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: 5447f016f83dfde47a5b78148735be89, type: 3}
   m_PrefabInstance: {fileID: 330253060}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &363868056
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 363868057}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &363868057
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 363868056}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 17
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &374422134
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4946,7 +4976,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 2, y: 1}
+    m_SensorSize: {x: 2.0007517, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -5938,7 +5968,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 2, y: 1}
+    m_SensorSize: {x: 2.0007517, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -9072,7 +9102,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 2, y: 1}
+    m_SensorSize: {x: 2.0007517, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -9255,7 +9285,7 @@ GameObject:
   - component: {fileID: 1884694084}
   - component: {fileID: 1884694083}
   m_Layer: 0
-  m_Name: LineChanger
+  m_Name: RootChanger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10102,7 +10132,7 @@ GameObject:
   - component: {fileID: 2131007670}
   - component: {fileID: 2131007672}
   - component: {fileID: 2131007671}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Terrain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26537,8 +26567,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55e50410800ad654c99e3b01c3530f60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller: {fileID: 4250240780891429380}
   speed: 5
+  jumpPower: 300
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 8
+  isDash: 0
 --- !u!136 &4250240780891429382
 CapsuleCollider:
   m_ObjectHideFlags: 0
