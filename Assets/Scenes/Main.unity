@@ -569,7 +569,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 142167632}
-  m_LocalRotation: {x: 0, y: 0.9961947, z: -0.08715578, w: 0}
+  m_LocalRotation: {x: 0.00046320874, y: 0.98675793, z: -0.16217482, w: 0.0028184087}
   m_LocalPosition: {x: 230.24998, y: 4.52, z: 238.79001}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -621,7 +621,7 @@ GameObject:
   - component: {fileID: 143002609}
   - component: {fileID: 143002608}
   m_Layer: 0
-  m_Name: CM vcam1 (3)_WaypointMove
+  m_Name: CM vcam1_WaypointMove
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -645,7 +645,7 @@ MonoBehaviour:
   m_StreamingVersion: 20170927
   m_Priority: 20
   m_StandbyUpdate: 2
-  m_LookAt: {fileID: 0}
+  m_LookAt: {fileID: 4247883958757239221}
   m_Follow: {fileID: 4247883958757239221}
   m_Lens:
     FieldOfView: 50
@@ -672,7 +672,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 143002607}
-  m_LocalRotation: {x: -0, y: 0.9961947, z: -0.08715578, w: 0}
+  m_LocalRotation: {x: 0.00046320874, y: 0.98675793, z: -0.16217482, w: 0.0028184087}
   m_LocalPosition: {x: 230.24998, y: 4.52, z: 238.79001}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -9255,7 +9255,7 @@ GameObject:
   - component: {fileID: 1884694084}
   - component: {fileID: 1884694083}
   m_Layer: 0
-  m_Name: LineChanger
+  m_Name: RootChanger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -26537,7 +26537,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55e50410800ad654c99e3b01c3530f60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller: {fileID: 4250240780891429380}
   speed: 5
 --- !u!136 &4250240780891429382
 CapsuleCollider:
