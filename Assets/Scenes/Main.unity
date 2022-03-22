@@ -569,7 +569,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 142167632}
-  m_LocalRotation: {x: 0.00046320874, y: 0.98675793, z: -0.16217482, w: 0.0028184087}
+  m_LocalRotation: {x: 0.00046350237, y: 0.98675793, z: -0.16217482, w: 0.0028201959}
   m_LocalPosition: {x: 230.24998, y: 4.52, z: 238.79001}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -656,7 +656,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 2, y: 1}
+    m_SensorSize: {x: 2.0007517, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -672,7 +672,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 143002607}
-  m_LocalRotation: {x: 0.00046320874, y: 0.98675793, z: -0.16217482, w: 0.0028184087}
+  m_LocalRotation: {x: 0.00046350237, y: 0.98675793, z: -0.16217482, w: 0.0028201959}
   m_LocalPosition: {x: 230.24998, y: 4.52, z: 238.79001}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -4946,7 +4946,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 2, y: 1}
+    m_SensorSize: {x: 2.0007517, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -5938,7 +5938,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 2, y: 1}
+    m_SensorSize: {x: 2.0007517, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -9072,7 +9072,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 2, y: 1}
+    m_SensorSize: {x: 2.0007517, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -10102,7 +10102,7 @@ GameObject:
   - component: {fileID: 2131007670}
   - component: {fileID: 2131007672}
   - component: {fileID: 2131007671}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Terrain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26538,6 +26538,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
+  jumpPower: 300
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 8
 --- !u!136 &4250240780891429382
 CapsuleCollider:
   m_ObjectHideFlags: 0

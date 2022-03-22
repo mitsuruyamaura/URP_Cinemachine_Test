@@ -7,6 +7,15 @@ public class Move : MonoBehaviour {
     [SerializeField]
     private float speed;
 
+    [SerializeField]
+    private float jumpPower;
+
+    [SerializeField]
+    private LayerMask groundLayer;
+
+    //[SerializeField]
+    //private bool isGrounded;
+
     private DirectionController2d controller;
     private Rigidbody rb;
     private Animator anim;
@@ -49,7 +58,13 @@ public class Move : MonoBehaviour {
             controller.direction = Direction.back;
         }
 
+        // 移動アニメの同期
         SyncMoveAnimation();
+
+        // ジャンプ
+        if (Input.GetButtonDown("Jump") && CheckGround()) {
+            Jump();
+        }
 
         //if (Input.GetKey(KeyCode.LeftArrow)) {
         //    // 向きを設定する
@@ -98,5 +113,21 @@ public class Move : MonoBehaviour {
             // 停止
             rb.velocity = Vector3.zero;
         }
+    }
+
+
+    private bool CheckGround() {
+        return Physics.Linecast(
+            transform.position + transform.up * 1.0f,
+            transform.position - transform.up * 0.3f,
+            groundLayer
+            );
+    }
+
+    // ジャンプのアニメ切り替え記事
+    // https://issekinichou.wordpress.com/2020/01/27/unity-%E3%82%B8%E3%83%A3%E3%83%B3%E3%83%97/
+    private void Jump() {
+        anim.SetTrigger("JumpTrigger");
+        rb.AddForce(rb.velocity.x, jumpPower, rb.velocity.z);
     }
 }
