@@ -23,6 +23,8 @@ public class Move : MonoBehaviour {
     private string horizontal = "Horizontal";
     private float inputValue;
     private Vector2 lookDirection = new Vector2(1, 0);
+
+    [SerializeField]
     private bool isDash;
 
 
@@ -66,6 +68,8 @@ public class Move : MonoBehaviour {
             Jump();
         }
 
+        isDash = Input.GetKey(KeyCode.LeftShift) ? true : false;
+
         //if (Input.GetKey(KeyCode.LeftArrow)) {
         //    // 向きを設定する
         //    controller.direction = Direction.back;
@@ -88,10 +92,10 @@ public class Move : MonoBehaviour {
             anim.SetFloat("Look X", lookDirection.x);
             anim.SetFloat("Look Y", lookDirection.y);
 
-            float moveSpeed = isDash ? lookDirection.sqrMagnitude * 2.0f : lookDirection.sqrMagnitude;
+            float animSpeed = isDash ? lookDirection.sqrMagnitude * 2.0f : lookDirection.sqrMagnitude;
 
             // ダッシュ有無に応じてアニメの再生速度を調整
-            anim.SetFloat("Speed", moveSpeed);
+            anim.SetFloat("Speed", animSpeed);
         } else {
             anim.SetFloat("Speed", 0);
         }
@@ -105,8 +109,10 @@ public class Move : MonoBehaviour {
             return; 
         }
 
+        float moveSpeed = isDash ? speed * 2.0f : speed;
+
         // 移動
-        rb.velocity = new Vector3(controller.forward.x * speed, rb.velocity.y, controller.forward.z * speed);
+        rb.velocity = new Vector3(controller.forward.x * moveSpeed, rb.velocity.y, controller.forward.z * moveSpeed);
 
         // キー入力がない場合
         if (inputValue == 0) {
