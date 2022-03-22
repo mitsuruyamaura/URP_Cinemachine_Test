@@ -89,8 +89,8 @@ public class Move : MonoBehaviour {
             lookDirection.Set(inputValue, 0);
             lookDirection.Normalize();
 
-            anim.SetFloat("Look X", lookDirection.x);
-            anim.SetFloat("Look Y", lookDirection.y);
+            anim.SetFloat("LookX", lookDirection.x);
+            anim.SetFloat("LookZ", lookDirection.y);
 
             float animSpeed = isDash ? lookDirection.sqrMagnitude * 2.0f : lookDirection.sqrMagnitude;
 
