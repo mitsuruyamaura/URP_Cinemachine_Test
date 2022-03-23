@@ -26644,6 +26644,7 @@ GameObject:
   - component: {fileID: 4250240780891429381}
   - component: {fileID: 4250240780891429380}
   - component: {fileID: 4250240780891429383}
+  - component: {fileID: 4250240780891429384}
   m_Layer: 0
   m_Name: 01_kohaku_A_WaypointMove
   m_TagString: Untagged
@@ -26715,6 +26716,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!114 &4250240780891429384
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4250240780891429379}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb237034c5dbe634d9eac6df0d39456a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4250241347247919715
 GameObject:
   m_ObjectHideFlags: 0
