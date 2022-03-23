@@ -35,7 +35,9 @@ public class Attack : MonoBehaviour
             .AddTo(gameObject);
     }
 
-    
+    /// <summary>
+    /// UŒ‚€”õ
+    /// </summary>
     private void PrepareAttack() {
         anim.SetTrigger("Attack");
     }
