@@ -26848,6 +26848,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 6327387640143793819, guid: 5e59b8cb780fdd34e81f6e957f577b85, type: 3}
   bulletSpeed: 300
   bulletPower: 2
+  useInputSystem: 1
 --- !u!114 &4250240780891429385
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26894,7 +26895,19 @@ MonoBehaviour:
     m_ActionId: e4f4e159-5e9b-4687-9807-31ffcc23e02d
     m_ActionName: Player/Look[/Mouse/delta,/Touchscreen/delta]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4250240780891429384}
+        m_TargetAssemblyTypeName: Attack, Assembly-CSharp
+        m_MethodName: OnFire
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 18832b7a-af68-48cd-a8b6-1027817ea25d
     m_ActionName: Player/Fire[/Mouse/leftButton,/Touchscreen/primaryTouch/tap]
   - m_PersistentCalls:
