@@ -74,7 +74,8 @@ public class Attack : MonoBehaviour
     /// </summary>
     /// <param name="context"></param>
     public void OnFire(InputAction.CallbackContext context) {
-        //if (context.phase == InputActionPhase.Performed) {
+        // 連続ででるので、UniRx で制御する方法で考える
+        //if (context.phase == InputActionPhase.Performed) {  // Perfromed は有効である場合を差す。入力有無での判断ではない
             PrepareAttack();
         //}
     }

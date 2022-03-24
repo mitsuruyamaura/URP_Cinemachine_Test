@@ -82,9 +82,11 @@ public class Move : MonoBehaviour {
         // 移動アニメの同期
         SyncMoveAnimation();
 
-        // ジャンプ
-        if (Input.GetButtonDown("Jump") && CheckGround()) {
-            Jump();
+        if (!useInputSystem) {
+            // ジャンプ
+            if (Input.GetButtonDown("Jump") && CheckGround()) {
+                Jump();
+            }
         }
 
         isDash = Input.GetKey(KeyCode.LeftShift) ? true : false;
@@ -148,15 +150,19 @@ public class Move : MonoBehaviour {
         // キー入力がない場合
         if (inputValue == 0) {
             // 停止
-            rb.velocity = Vector3.zero;
+            rb.velocity = new Vector3(0, rb.velocity.y, 0);
         }
     }
 
-
+    /// <summary>
+    /// 地面とプレイヤーとの接地判定
+    /// </summary>
+    /// <returns></returns>
     private bool CheckGround() {
+        Debug.DrawLine(transform.position + transform.up * 1.0f, transform.position - transform.up * 0.2f, Color.red);
         return Physics.Linecast(
             transform.position + transform.up * 1.0f,
-            transform.position - transform.up * 0.3f,
+            transform.position - transform.up * 0.2f,
             groundLayer
             );
     }
@@ -166,5 +172,15 @@ public class Move : MonoBehaviour {
     private void Jump() {
         anim.SetTrigger("JumpTrigger");
         rb.AddForce(rb.velocity.x, jumpPower, rb.velocity.z);
+    }
+
+    /// <summary>
+    /// InputSystem を利用したジャンプ機能
+    /// </summary>
+    /// <param name="context"></param>
+    public void OnJump(InputAction.CallbackContext context) {
+        if (CheckGround()) {
+            Jump();
+        }
     }
 }
