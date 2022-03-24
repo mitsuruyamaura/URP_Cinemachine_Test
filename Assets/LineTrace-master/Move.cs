@@ -1,5 +1,7 @@
 using UnityEngine;
 using LineTrace;
+using UnityEngine.InputSystem;
+
 
 [RequireComponent(typeof(Rigidbody))]
 public class Move : MonoBehaviour {
@@ -32,6 +34,16 @@ public class Move : MonoBehaviour {
 
     private bool isVignette;
 
+    [SerializeField]
+    private bool useInputSystem;
+
+
+    public void OnMove(InputAction.CallbackContext context) {
+        if (useInputSystem) {
+            inputValue = context.ReadValue<Vector2>().x;
+        }
+    }
+
 
     void Start() {
         if(!TryGetComponent(out rb)) {
@@ -55,8 +67,10 @@ public class Move : MonoBehaviour {
             return;
         }
 
-        // 左右のキー入力の取得
-        inputValue = Input.GetAxis(horizontal);
+        if (!useInputSystem) {
+            // 左右のキー入力の取得
+            inputValue = Input.GetAxis(horizontal);
+        }
 
         // キー入力の方向に合わせて向きを設定
         if (inputValue > 0) {
@@ -68,12 +82,16 @@ public class Move : MonoBehaviour {
         // 移動アニメの同期
         SyncMoveAnimation();
 
-        // ジャンプ
-        if (Input.GetButtonDown("Jump") && CheckGround()) {
-            Jump();
+        if (!useInputSystem) {
+            // ジャンプ
+            if (Input.GetButtonDown("Jump") && CheckGround()) {
+                Jump();
+            }
         }
 
-        isDash = Input.GetKey(KeyCode.LeftShift) ? true : false;
+        if (!useInputSystem) {
+            isDash = Input.GetKey(KeyCode.LeftShift) ? true : false;
+        }
 
         if (isDash) {
             if (!isVignette) {
@@ -134,15 +152,19 @@ public class Move : MonoBehaviour {
         // キー入力がない場合
         if (inputValue == 0) {
             // 停止
-            rb.velocity = Vector3.zero;
+            rb.velocity = new Vector3(0, rb.velocity.y, 0);
         }
     }
 
-
+    /// <summary>
+    /// 地面とプレイヤーとの接地判定
+    /// </summary>
+    /// <returns></returns>
     private bool CheckGround() {
+        Debug.DrawLine(transform.position + transform.up * 1.0f, transform.position - transform.up * 0.2f, Color.red);
         return Physics.Linecast(
             transform.position + transform.up * 1.0f,
-            transform.position - transform.up * 0.3f,
+            transform.position - transform.up * 0.2f,
             groundLayer
             );
     }
@@ -152,5 +174,20 @@ public class Move : MonoBehaviour {
     private void Jump() {
         anim.SetTrigger("JumpTrigger");
         rb.AddForce(rb.velocity.x, jumpPower, rb.velocity.z);
+    }
+
+    /// <summary>
+    /// InputSystem を利用したジャンプ機能
+    /// </summary>
+    /// <param name="context"></param>
+    public void OnJump(InputAction.CallbackContext context) {
+        if (CheckGround()) {
+            Jump();
+        }
+    }
+
+
+    public void OnDash(InputAction.CallbackContext context) {
+        isDash = context.ReadValueAsButton() ? true : false;
     }
 }

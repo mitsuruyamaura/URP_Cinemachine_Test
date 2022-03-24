@@ -4,6 +4,8 @@ using UnityEngine;
 using UniRx;
 using UniRx.Triggers;
 using DG.Tweening;
+using UnityEngine.InputSystem;
+
 
 public class Attack : MonoBehaviour
 {
@@ -22,17 +24,22 @@ public class Attack : MonoBehaviour
     [SerializeField]
     private int bulletPower;
 
+    [SerializeField]
+    private bool useInputSystem;
+
 
     void Start()
     {
         TryGetComponent(out anim);
         attackEffect.SetActive(false);
 
-        this.UpdateAsObservable()
-            .Where(_ => Input.GetButtonDown("Fire1"))
-            .ThrottleFirst(System.TimeSpan.FromSeconds(1.5f))
-            .Subscribe(_ => PrepareAttack())
-            .AddTo(gameObject);
+        if (!useInputSystem) {
+            this.UpdateAsObservable()
+                .Where(_ => Input.GetButtonDown("Fire1"))
+                .ThrottleFirst(System.TimeSpan.FromSeconds(1.5f))
+                .Subscribe(_ => PrepareAttack())
+                .AddTo(gameObject);
+        }          
     }
 
     /// <summary>
@@ -60,5 +67,16 @@ public class Attack : MonoBehaviour
     /// </summary>
     private void HitEnd() {
         attackEffect.SetActive(false);
+    }
+
+    /// <summary>
+    /// InputSystem 使用時の攻撃処理
+    /// </summary>
+    /// <param name="context"></param>
+    public void OnFire(InputAction.CallbackContext context) {
+        // 連続ででるので、UniRx で制御する方法で考える
+        //if (context.phase == InputActionPhase.Performed) {  // Perfromed は有効である場合を差す。入力有無での判断ではない
+            PrepareAttack();
+        //}
     }
 }
