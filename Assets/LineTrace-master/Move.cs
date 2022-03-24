@@ -89,7 +89,9 @@ public class Move : MonoBehaviour {
             }
         }
 
-        isDash = Input.GetKey(KeyCode.LeftShift) ? true : false;
+        if (!useInputSystem) {
+            isDash = Input.GetKey(KeyCode.LeftShift) ? true : false;
+        }
 
         if (isDash) {
             if (!isVignette) {
@@ -182,5 +184,10 @@ public class Move : MonoBehaviour {
         if (CheckGround()) {
             Jump();
         }
+    }
+
+
+    public void OnDash(InputAction.CallbackContext context) {
+        isDash = context.ReadValueAsButton() ? true : false;
     }
 }
