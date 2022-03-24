@@ -1,5 +1,7 @@
 using UnityEngine;
 using LineTrace;
+using UnityEngine.InputSystem;
+
 
 [RequireComponent(typeof(Rigidbody))]
 public class Move : MonoBehaviour {
@@ -32,6 +34,16 @@ public class Move : MonoBehaviour {
 
     private bool isVignette;
 
+    [SerializeField]
+    private bool useInputSystem;
+
+
+    public void OnMove(InputAction.CallbackContext context) {
+        if (useInputSystem) {
+            inputValue = context.ReadValue<Vector2>().x;
+        }
+    }
+
 
     void Start() {
         if(!TryGetComponent(out rb)) {
@@ -55,8 +67,10 @@ public class Move : MonoBehaviour {
             return;
         }
 
-        // 左右のキー入力の取得
-        inputValue = Input.GetAxis(horizontal);
+        if (!useInputSystem) {
+            // 左右のキー入力の取得
+            inputValue = Input.GetAxis(horizontal);
+        }
 
         // キー入力の方向に合わせて向きを設定
         if (inputValue > 0) {
