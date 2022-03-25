@@ -35,7 +35,7 @@ public class EnemyBase : MonoBehaviour
     private void OnTriggerEnter(Collider other) {
         if (other.TryGetComponent(out Bullet bullet)) {
             enemyData.hp = Mathf.Max(0, enemyData.hp -= bullet.BulletPower);
-            Debug.Log(enemyData.hp);
+            //Debug.Log(enemyData.hp);
 
             if (enemyData.hp <= 0) {
                 capsuleCollider.enabled = false;
@@ -43,7 +43,7 @@ public class EnemyBase : MonoBehaviour
                 anim.SetBool("Walk Forward", false);
                 anim.SetBool("Down", true);
                 Destroy(gameObject, 1.5f);
-                Debug.Log("Destroy");
+                //Debug.Log("Destroy");
             }
         }
     }
