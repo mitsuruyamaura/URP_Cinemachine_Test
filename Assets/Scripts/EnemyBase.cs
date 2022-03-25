@@ -6,13 +6,13 @@ using DG.Tweening;
      
 public class EnemyBase : MonoBehaviour
 {
-    private Rigidbody rb;
-    private Animator anim;
-    private CapsuleCollider capsuleCollider;
+    protected Rigidbody rb;
+    protected Animator anim;
+    protected CapsuleCollider capsuleCollider;
 
-    private EnemyData enemyData;
+    protected EnemyData enemyData;
 
-    void Start()
+    protected virtual void Start()
     {
         enemyData = new EnemyData { no = 0, hp = 2, attackPower = 1, moveSpeed = 3.5f };
         TryGetComponent(out anim);
@@ -23,16 +23,16 @@ public class EnemyBase : MonoBehaviour
     }
 
     
-    private void MoveEnemy() {
+    protected virtual void MoveEnemy() {
         rb.DOMoveX(transform.position.x + Random.Range(2, 4), enemyData.moveSpeed)
             .SetLink(gameObject)
             .SetEase(Ease.InQuart)
             .OnComplete(() => { if (enemyData.hp > 0) MoveEnemy(); });
-        anim.SetBool("Walk Forward", true);
+        if(anim) anim.SetBool("Walk Forward", true);
     }
 
 
-    private void OnTriggerEnter(Collider other) {
+    protected virtual void OnTriggerEnter(Collider other) {
         if (other.TryGetComponent(out Bullet bullet)) {
             enemyData.hp = Mathf.Max(0, enemyData.hp -= bullet.BulletPower);
             //Debug.Log(enemyData.hp);
@@ -40,8 +40,10 @@ public class EnemyBase : MonoBehaviour
             if (enemyData.hp <= 0) {
                 capsuleCollider.enabled = false;
                 rb.isKinematic = true;
-                anim.SetBool("Walk Forward", false);
-                anim.SetBool("Down", true);
+                if (anim) {
+                    anim.SetBool("Walk Forward", false);
+                    anim.SetBool("Down", true);
+                }
                 Destroy(gameObject, 1.5f);
                 //Debug.Log("Destroy");
             }
