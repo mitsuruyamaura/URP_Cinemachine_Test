@@ -7,8 +7,8 @@ public class JumpEnemy : EnemyBase
 {
     protected override void MoveEnemy() {
         StartCoroutine(Jump());
-        
-        //rb.DOJump(new Vector3(transform.position.x, transform.position.y, transform.position.z), 1.0f, 1, 1.25f).SetLink(gameObject).SetEase(Ease.InQuart).SetLoops(-1, LoopType.Yoyo);
+        //transform.position.x, transform.position.y + 1.5f, transform.position.z
+        //rb.DOJump(new Vector3(0, 1.5f, 0), 1.5f, 1, 1.5f).SetLink(gameObject).SetEase(Ease.InQuart).SetRelative().OnComplete(() => { if (enemyData.hp > 0) MoveEnemy(); });
 
     }
 
