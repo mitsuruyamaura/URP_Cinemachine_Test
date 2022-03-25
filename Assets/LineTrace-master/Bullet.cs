@@ -18,5 +18,6 @@ public class Bullet : MonoBehaviour
         if(TryGetComponent(out Rigidbody rb)) {
             rb.AddForce(direction * speed);
         }
+        Destroy(gameObject, 3.0f);
     }
 }
