@@ -34,19 +34,27 @@ public class EnemyBase : MonoBehaviour
 
     protected virtual void OnTriggerEnter(Collider other) {
         if (other.TryGetComponent(out Bullet bullet)) {
-            enemyData.hp = Mathf.Max(0, enemyData.hp -= bullet.BulletPower);
-            //Debug.Log(enemyData.hp);
+            CalcDamage(bullet.BulletPower);
+        }
+    }
 
-            if (enemyData.hp <= 0) {
-                capsuleCollider.enabled = false;
-                rb.isKinematic = true;
-                if (anim) {
-                    anim.SetBool("Walk Forward", false);
-                    anim.SetBool("Down", true);
-                }
-                Destroy(gameObject, 1.5f);
-                //Debug.Log("Destroy");
+    /// <summary>
+    /// ダメージ計算
+    /// </summary>
+    /// <param name="attackPower"></param>
+    public virtual void CalcDamage(int attackPower) {
+        enemyData.hp = Mathf.Max(0, enemyData.hp -= attackPower);
+        //Debug.Log(enemyData.hp);
+
+        if (enemyData.hp <= 0) {
+            capsuleCollider.enabled = false;
+            rb.isKinematic = true;
+            if (anim) {
+                anim.SetBool("Walk Forward", false);
+                anim.SetBool("Down", true);
             }
+            Destroy(gameObject, 1.5f);
+            //Debug.Log("Destroy");
         }
     }
 }
