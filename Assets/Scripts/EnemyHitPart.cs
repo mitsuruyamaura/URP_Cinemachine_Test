@@ -15,7 +15,7 @@ public class EnemyHitPart : MonoBehaviour
 
 
     private void OnTriggerEnter(Collider other) {
-        Debug.Log("Trigger");
+        //Debug.Log("Trigger");
         if (hitParts == HitParts.Armor) {
             Destroy(other.gameObject);
             return;
