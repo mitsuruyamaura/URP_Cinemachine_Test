@@ -9,29 +9,6 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private Text txtGameTime;
 
-    [SerializeField]
-    private int gameTime;
-
-    private float timer;
-
-
-    void Update() {
-        if (gameTime <= 0) {
-            return;
-        }
-
-        timer += Time.deltaTime;
-        if (timer >= 1.0f) {
-            timer = 0;
-
-            // 0 以下にならないように制御
-            // 通常の UI 更新
-            UpdateDisplayGameTime(Mathf.Max(0, --gameTime));
-
-            // DOTween の場合
-            //UpdateDisplayGameTime(gameTime, Mathf.Max(0, --gameTime));
-        }
-    }
 
     /// <summary>
     /// 通常の更新
