@@ -26,7 +26,7 @@ public class GameManager : MonoBehaviour
             // ’Êí‚Ì UI XV
             uiManager.UpdateDisplayGameTime(Mathf.Max(0, --gameTime));
 
-            // DOTween ‚Ìê‡
+            // DOTween ‚Ìê‡(‹““®‚É–â‘è‚È‚µ)
             //uiManager.UpdateDisplayGameTime(gameTime, Mathf.Max(0, --gameTime));
         }
     }

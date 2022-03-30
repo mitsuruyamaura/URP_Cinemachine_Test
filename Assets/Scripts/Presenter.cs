@@ -21,7 +21,9 @@ public class Presenter : MonoBehaviour
     void Start()
     {
         // ƒQ[ƒ€ŽžŠÔ‚Ì‰Šú’lÝ’è
-        model.GameTime.Value = gameTime;
+        if (gameTime != 0) {
+            model.GameTime.Value = gameTime;
+        }
 
         // GameTime ‚ðŠÄŽ‹ ’Êí‚Ìê‡(‹““®‚É–â‘è‚È‚µ)
         //model.GameTime.Subscribe(x => view.UpdateDisplayGameTime(x)).AddTo(gameObject);
