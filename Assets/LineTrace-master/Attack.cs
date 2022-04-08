@@ -36,6 +36,7 @@ public class Attack : MonoBehaviour
         if (!useInputSystem) {
             this.UpdateAsObservable()
                 .Where(_ => Input.GetButtonDown("Fire1"))
+                .Where(_ => !anim.IsInTransition(0))  // アニメーションの遷移中ではない
                 .ThrottleFirst(System.TimeSpan.FromSeconds(1.5f))
                 .Subscribe(_ => PrepareAttack())
                 .AddTo(gameObject);
