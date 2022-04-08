@@ -36,6 +36,7 @@ public class Attack : MonoBehaviour
         if (!useInputSystem) {
             this.UpdateAsObservable()
                 .Where(_ => Input.GetButtonDown("Fire1"))
+                .Where(_ => !anim.IsInTransition(0))  // アニメーションの遷移中ではない
                 .ThrottleFirst(System.TimeSpan.FromSeconds(1.5f))
                 .Subscribe(_ => PrepareAttack())
                 .AddTo(gameObject);
@@ -46,6 +47,7 @@ public class Attack : MonoBehaviour
     /// 攻撃準備
     /// </summary>
     private void PrepareAttack() {
+        Debug.Log("Attack");
         anim.SetTrigger("Attack");
     }
 
@@ -74,9 +76,11 @@ public class Attack : MonoBehaviour
     /// </summary>
     /// <param name="context"></param>
     public void OnFire(InputAction.CallbackContext context) {
-        // 連続ででるので、UniRx で制御する方法で考える
-        //if (context.phase == InputActionPhase.Performed) {  // Perfromed は有効である場合を差す。入力有無での判断ではない
+        if (useInputSystem) {
+            // 連続ででるので、UniRx で制御する方法で考える
+            //if (context.phase == InputActionPhase.Performed) {  // Perfromed は有効である場合を差す。入力有無での判断ではない
             PrepareAttack();
-        //}
+            //}
+        }
     }
 }
