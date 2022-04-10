@@ -49,6 +49,7 @@ public class Attack : MonoBehaviour
     private void PrepareAttack() {
         Debug.Log("Attack");
         anim.SetTrigger("Attack");
+        SoundManager.instance.PlaySE(SeType.AttackEffect);
     }
 
     /// <summary>

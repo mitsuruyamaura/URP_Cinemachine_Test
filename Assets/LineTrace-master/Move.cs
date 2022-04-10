@@ -174,6 +174,7 @@ public class Move : MonoBehaviour {
     private void Jump() {
         anim.SetTrigger("JumpTrigger");
         rb.AddForce(rb.velocity.x, jumpPower, rb.velocity.z);
+        SoundManager.instance.PlaySE(SeType.Jump);
     }
 
     /// <summary>

@@ -13,6 +13,11 @@ public class GameManager : MonoBehaviour
     private float timer;
 
 
+    void Start() {
+        SoundManager.instance.PlayBGM(BgmType.Main);    
+    }
+
+
     void Update() {
         if (gameTime <= 0) {
             return;
