@@ -35,6 +35,7 @@ public class EnemyBase : MonoBehaviour
     protected virtual void OnTriggerEnter(Collider other) {
         if (other.TryGetComponent(out Bullet bullet)) {
             CalcDamage(bullet.BulletPower);
+            SoundManager.instance.PlaySE(SeType.Hit);
         }
     }
 
