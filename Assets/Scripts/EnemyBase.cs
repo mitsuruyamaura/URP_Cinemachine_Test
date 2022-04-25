@@ -6,6 +6,7 @@ using DG.Tweening;
      
 public class EnemyBase : MonoBehaviour
 {
+    protected int no;
     protected Rigidbody rb;
     protected Animator anim;
     protected CapsuleCollider capsuleCollider;
@@ -14,7 +15,11 @@ public class EnemyBase : MonoBehaviour
 
     protected virtual void Start()
     {
-        enemyData = new EnemyData { no = 0, hp = 2, attackPower = 1, moveSpeed = 3.5f };
+        enemyData = DataBaseManager.instance.GetEnemyDataFromNo(no);
+        if (enemyData == null) {
+            enemyData = new EnemyData { no = 0, hp = 2, attackPower = 1, moveSpeed = 3.5f };
+        }
+
         TryGetComponent(out anim);
         TryGetComponent(out capsuleCollider);
         if (TryGetComponent(out rb)){
