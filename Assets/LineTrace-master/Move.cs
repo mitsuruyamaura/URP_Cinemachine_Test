@@ -37,7 +37,10 @@ public class Move : MonoBehaviour {
     [SerializeField]
     private bool useInputSystem;
 
-
+    /// <summary>
+    /// InputSystem の移動
+    /// </summary>
+    /// <param name="context"></param>
     public void OnMove(InputAction.CallbackContext context) {
         if (useInputSystem) {
             inputValue = context.ReadValue<Vector2>().x;
@@ -80,7 +83,9 @@ public class Move : MonoBehaviour {
         }
 
         // 移動アニメの同期
-        SyncMoveAnimation();
+        if (anim) {
+            SyncMoveAnimation();
+        }
 
         if (!useInputSystem) {
             // ジャンプ
@@ -124,8 +129,9 @@ public class Move : MonoBehaviour {
             lookDirection.Set(inputValue, 0);
             lookDirection.Normalize();
 
-            anim.SetFloat("LookX", lookDirection.x);
-            anim.SetFloat("LookZ", lookDirection.y);
+            anim.SetFloat("Direction", lookDirection.x);
+            //anim.SetFloat("LookX", lookDirection.x);
+            //anim.SetFloat("LookZ", lookDirection.y);
 
             float animSpeed = isDash ? lookDirection.sqrMagnitude * 2.0f : lookDirection.sqrMagnitude;
 
