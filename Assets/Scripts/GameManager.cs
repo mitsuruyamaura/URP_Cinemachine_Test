@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cysharp.Threading.Tasks;
 
 public class GameManager : MonoBehaviour
 {
@@ -8,13 +9,26 @@ public class GameManager : MonoBehaviour
     private UIManager uiManager;
 
     [SerializeField]
+    private SkyboxChanger skyboxChanger;
+
+    [SerializeField]
     private int gameTime;
 
     private float timer;
 
 
-    void Start() {
-        SoundManager.instance.PlayBGM(BgmType.Main);    
+     async UniTask Start() {  // Awake 内で await してもここは待たない。そのため、取得よりも早く動くので、一旦止める必要がある
+
+        SoundManager.instance.PlayBGM(BgmType.Main);
+
+        var token = this.GetCancellationTokenOnDestroy();
+
+        // データ取得まで待機させる
+        await UniTask.WaitUntil(() => !GSSReceiver.instance.IsLoading);
+
+        Debug.Log("ゲーム開始");
+
+        skyboxChanger.ChangeSkybox();
     }
 
 
