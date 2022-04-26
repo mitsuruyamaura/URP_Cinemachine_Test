@@ -9298,8 +9298,8 @@ GameObject:
   - component: {fileID: 905944313142452000}
   - component: {fileID: 1139032538548114686}
   - component: {fileID: 761620677520950928}
-  - component: {fileID: 6327387640143793819}
   - component: {fileID: 2724967798411984345}
+  - component: {fileID: 6327387640143793819}
   m_Layer: 0
   m_Name: CFX_Magical_Source_Bullet
   m_TagString: Untagged
@@ -14057,18 +14057,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!114 &6327387640143793819
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1032378037020038962}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 54f21e2c5cbac5240ad69ee824e91f92, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!136 &2724967798411984345
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -14083,3 +14071,15 @@ CapsuleCollider:
   m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &6327387640143793819
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1032378037020038962}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54f21e2c5cbac5240ad69ee824e91f92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
