@@ -87,7 +87,7 @@ public class SoundManager : MonoBehaviour {
             bgmSources[0].clip = newBgmData.bgmAudioClip;
             bgmSources[0].volume = newBgmData.volume;
             bgmSources[0].Play();
-            Debug.Log("Play");
+            Debug.Log("BGM Play");
         } else {
             // クロスフェード処理を利用して BGM を切り替え
             StartCoroutine(CrossFadeChangeBMG(newBgmData, loopFlg));

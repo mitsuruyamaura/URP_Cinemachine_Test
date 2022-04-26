@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UniRx;
 using UniRx.Triggers;
+using UnityEngine.InputSystem;
 
 // 参考動画。こちらは NavMesh を使っているが、ジャンプさせたいので使わない
 // https://www.youtube.com/watch?v=VqS1dTiVLFA&t=2s
@@ -29,6 +30,19 @@ public class PlayerController : MonoBehaviour
     private float horizontal;
     private float vertical;
     private Vector2 lookDirection = new Vector2(1, 0);
+
+    [SerializeField]
+    private bool useInputSystem;
+
+    /// <summary>
+    /// InputSystem の移動
+    /// </summary>
+    /// <param name="context"></param>
+    public void OnMove(InputAction.CallbackContext context) {
+        if (useInputSystem) {
+            horizontal = context.ReadValue<Vector2>().x;
+        }
+    }
 
 
     void Start()
@@ -85,8 +99,9 @@ public class PlayerController : MonoBehaviour
             lookDirection.Set(horizontal, vertical);
             lookDirection.Normalize();
 
+            //anim.SetFloat("Direction", lookDirection.x);
             anim.SetFloat("LookX", lookDirection.x);
-            anim.SetFloat("LookZ", lookDirection.y);
+            //anim.SetFloat("LookZ", lookDirection.y);
 
             anim.SetFloat("Speed", lookDirection.sqrMagnitude);
         } else {
