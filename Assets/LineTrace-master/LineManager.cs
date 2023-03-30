@@ -16,33 +16,34 @@ namespace LineTrace
         // Use this for initialization
         void Awake()
         {
-            waypoints.Select(w => w.position)
-                .ToObservable()
-                .Buffer(2, 1)
-                .Take(waypoints.Count - 1)
-                .Subscribe(wp =>
-                {
-                    var back = wp.First();
-                    var front = wp.Last();
-                    Line l = new Line(front, back);
-                    if (lineList.Count > 0)
-                    {
-                        lineList.Last().next = l;
-                        l.prev = lineList.Last();
-                    }
-                    lineList.Add(l);
-                }, () =>
-                {
-                    // 循環させる場合、最初と最後を繋ぐ線を追加する
-                    if (cycle)
-                    {
-                        Line cycleLine = new Line(waypoints.First().position, waypoints.Last().position);
-                        cycleLine.next = lineList.First();
-                        cycleLine.prev = lineList.Last();
-                        lineList.First().prev = cycleLine;
-                        lineList.Last().next = cycleLine;
-                    }
-                });
+            waypoints.Select(w => w.position) // w には Transform が入っており、それを Select を使って Position に変換。Linq の Select と同じ機能
+                .ToObservable()  // IEnumerable<T>.ToObservable。今回はList から Observable に変換。イテレータから値を順番に発行する Observable に変換できる
+                .Buffer(2, 1)    // 個数とスキップ数を指定してまとめる。今回の場合(2, 1)なので、１つ前の List の値とのペアを作る
+                .Take(waypoints.Count - 1) // 先頭から指定した個数だけ OnNext メッセージを通過させる。メッセージ発行後に OnCompleted メッセージを発行してObservableを完了状態にする
+                //.Subscribe(wp =>
+                //{
+                //    var back = wp.First();
+                //    var front = wp.Last();
+                //    Line l = new Line(front, back);
+                //    if (lineList.Count > 0)
+                //    {
+                //        lineList.Last().next = l;
+                //        l.prev = lineList.Last();
+                //    }
+                //    lineList.Add(l);
+                //}, () =>
+                //{
+                //    // 循環させる場合、最初と最後を繋ぐ線を追加する
+                //    if (cycle)
+                //    {
+                //        Line cycleLine = new Line(waypoints.First().position, waypoints.Last().position);
+                //        cycleLine.next = lineList.First();
+                //        cycleLine.prev = lineList.Last();
+                //        lineList.First().prev = cycleLine;
+                //        lineList.Last().next = cycleLine;
+                //    }
+                //})
+        ;
         }
 
         /// <summary>
@@ -69,18 +70,19 @@ namespace LineTrace
             waypoints.Select(w => w.position)
                 .ToObservable()
                 .Buffer(2, 1)
-                .Subscribe(wp =>
-                    {
-                        Gizmos.DrawLine(wp.First(), wp.Last());
-                        Gizmos.DrawSphere(wp.First(), 0.3F);
-                    }
-                    , () =>
-                    {
-                        if (cycle)
-                        {
-                            Gizmos.DrawLine(waypoints.Last().position, waypoints.First().position);
-                        }
-                    });
+                //.Subscribe(wp =>
+                //    {
+                //        Gizmos.DrawLine(wp.First(), wp.Last());
+                //        Gizmos.DrawSphere(wp.First(), 0.3F);
+                //    }
+                //    , () =>
+                //    {
+                //        if (cycle)
+                //        {
+                //            Gizmos.DrawLine(waypoints.Last().position, waypoints.First().position);
+                //        }
+                //    })
+                ;
         }
 
         #endregion

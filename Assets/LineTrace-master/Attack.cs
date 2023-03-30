@@ -27,6 +27,12 @@ public class Attack : MonoBehaviour
     [SerializeField]
     private bool useInputSystem;
 
+    [SerializeField] 
+    private Transform attackPoint;
+
+    [SerializeField]
+    private GameObject hitColliderPrefab;
+    
 
     void Start()
     {
@@ -83,5 +89,14 @@ public class Attack : MonoBehaviour
             PrepareAttack();
             //}
         }
+    }
+
+    /// <summary>
+    /// アニメーションイベントから起動
+    /// </summary>
+    public void MelleAttack() {
+        // 近接攻撃の生成
+        GameObject hitCollider = Instantiate(hitColliderPrefab, attackPoint.position, Quaternion.identity);
+        Destroy(hitCollider, 0.5f);
     }
 }
