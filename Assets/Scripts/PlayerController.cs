@@ -59,7 +59,8 @@ public class PlayerController : MonoBehaviour
             {
                 horizontal = Input.GetAxis("Horizontal");
                 vertical = Input.GetAxis("Vertical");
-
+                
+                // ƒAƒjƒ“¯Šú
                 if (anim) {
                     SyncMoveAnimation();
                 }
@@ -67,8 +68,7 @@ public class PlayerController : MonoBehaviour
 
         // ˆÚ“®
         this.FixedUpdateAsObservable()
-            .Subscribe(_ => { MoveDirectionFromCamera(); });
-
+            .Subscribe(_ => MoveDirectionFromCamera());
     }
 
     /// <summary>
@@ -97,7 +97,7 @@ public class PlayerController : MonoBehaviour
     private void SyncMoveAnimation() {
         if (!Mathf.Approximately(horizontal, 0.0f) || !Mathf.Approximately(vertical, 0.0f)) {
             lookDirection.Set(horizontal, vertical);
-            lookDirection.Normalize();
+            //lookDirection.Normalize();
 
             //anim.SetFloat("Direction", lookDirection.x);
             anim.SetFloat("LookX", lookDirection.x);
@@ -106,6 +106,7 @@ public class PlayerController : MonoBehaviour
             anim.SetFloat("Speed", lookDirection.sqrMagnitude);
         } else {
             anim.SetFloat("Speed", 0);
+            anim.Play("Idle");
         }
     }
 
