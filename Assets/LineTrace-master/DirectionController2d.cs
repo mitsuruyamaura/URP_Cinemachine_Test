@@ -49,6 +49,8 @@ namespace LineTrace
                 .Subscribe(_ =>
                 {
                     var next = current.GetNextLineByDirection(mDirection);
+                    
+                    // next が null の場合、current が代入される(三項演算子の場合は current = next == null ? current : next;)
                     current = next ?? current;
                     direction = mDirection;
                 });
