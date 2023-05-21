@@ -1,10 +1,8 @@
-using System;
 using UnityEngine;
 
 public class Rader : MonoBehaviour
 {
     private AgentEnemy agentEnemy;
-    
 
 
     private void Start() {
