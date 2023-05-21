@@ -22,7 +22,8 @@ public class EnemyBase : MonoBehaviour
 
         TryGetComponent(out anim);
         TryGetComponent(out capsuleCollider);
-        if (TryGetComponent(out rb)){
+        
+        if (TryGetComponent(out rb) && !rb.isKinematic){
             MoveEnemy();
         } 
     }
@@ -45,7 +46,7 @@ public class EnemyBase : MonoBehaviour
     }
 
     /// <summary>
-    /// ƒ_ƒ[ƒWŒvZ
+    /// ï¿½_ï¿½ï¿½ï¿½[ï¿½Wï¿½vï¿½Z
     /// </summary>
     /// <param name="attackPower"></param>
     public virtual void CalcDamage(int attackPower) {
